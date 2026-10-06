@@ -2,9 +2,13 @@
 
 Página única que reúne los accesos a los proyectos de gestión presupuestal:
 
-- Tablero de seguimiento
-- Programación financiera (POI)
-- Previsiones presupuestarias
+- Tablero de ejecución presupuestal 2026
+- Programación y Modificación Presupuestal
+- Previsiones Presupuestarias 2027–2034
+
+## Logo
+Sube el logo oficial de la ATU al repositorio con el nombre `logo-atu.png` (misma carpeta que `index.html`).
+Si no está, se muestra el texto "ATU".
 
 Es un acceso **adicional**: cada herramienta conserva su enlace e ingreso individual.
 
