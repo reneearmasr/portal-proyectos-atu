@@ -23,7 +23,7 @@
     --shadow:0 2px 6px rgba(0,0,0,.3); --shadow-hover:0 18px 40px rgba(0,0,0,.45);
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:"Plus Jakarta Sans",system-ui,sans-serif;line-height:1.55}
+  body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:var(--bg);color:var(--text);font-family:"Plus Jakarta Sans",system-ui,sans-serif;line-height:1.55}
 
   /* ---------- Encabezado ---------- */
   header{
@@ -43,7 +43,8 @@
     content:"";position:absolute;left:0;right:0;bottom:-1px;height:70px;background:var(--bg);
     clip-path:ellipse(75% 100% at 50% 100%);
   }
-  .wrap{max-width:1100px;margin:0 auto;padding:0 16px;position:relative;z-index:1}
+  main{width:100%}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 16px;position:relative;z-index:1}
   header .wrap{padding:0}
   .topbar{display:flex;align-items:center;gap:14px;margin-bottom:44px}
   .logo{
@@ -58,7 +59,7 @@
   .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);
         padding:6px 12px;border-radius:999px;font-size:13px;backdrop-filter:blur(6px);margin-bottom:16px}
   .pill i{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(242,183,5,.25);animation:pulse 2s infinite}
-  h1{margin:0;font-size:clamp(28px,5vw,46px);font-weight:800;line-height:1.1;letter-spacing:-.02em}
+  h1{margin:0;max-width:760px;font-size:clamp(30px,5vw,52px);font-weight:800;line-height:1.1;letter-spacing:-.02em}
   h1 span{background:linear-gradient(90deg,#fff, #bfe3ff 40%, var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
   .sub{margin:14px 0 0;max-width:620px;font-size:17px;opacity:.9}
 
@@ -127,7 +128,24 @@
         border-radius:14px;padding:16px 18px;font-size:14px;color:var(--muted);box-shadow:var(--shadow)}
   .note svg{flex:none;color:var(--blue);margin-top:2px}
   .empty{color:var(--muted);padding:20px 0;display:none}
-  footer{text-align:center;font-size:13px;color:var(--muted);padding:10px 16px 28px}
+  footer{margin-top:auto;background:var(--navy);color:rgba(255,255,255,.8);font-size:13.5px;padding:26px 16px}
+  .foot{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
+  .foot b{display:block;color:#fff;font-size:15px}
+  .foot-links{display:flex;gap:20px;align-items:center}
+  .foot-links a{color:#fff;text-decoration:none;font-weight:600}
+  .foot-links a:hover{color:var(--gold)}
+
+
+  .section-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 16px}
+  .section-head h3{margin:0;font-size:20px;font-weight:800}
+  .section-head span{font-size:13px;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:4px 12px;border-radius:999px}
+
+  .card.soon{border:2px dashed var(--border);background:transparent;box-shadow:none;align-items:center;justify-content:center;text-align:center;min-height:260px}
+  .card.soon::before,.card.soon::after{display:none}
+  .card.soon:hover{transform:none;box-shadow:none}
+  .soon .plus{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:1px solid var(--border);color:var(--muted);margin-bottom:14px}
+  .soon h2{color:var(--muted)}
+  .soon p{flex:0;margin:0}
 
   @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
   @keyframes shine{to{left:130%}}
@@ -148,9 +166,8 @@
     </div>
     <div class="hero">
       <div class="pill"><i></i> Gestión presupuestal</div>
-      <h1>Portal de Proyectos de <span>Gestión Presupuestal</span></h1>
-      <p class="sub">Acceso centralizado a la ejecución, programación, modificación y previsiones presupuestarias.</p>
-    </div>
+      <h1>Portal de <span>Gestión Presupuestal</span></h1>
+      <p class="sub">Acceso centralizado a las herramientas de ejecución, programación, modificación y previsiones presupuestarias de la ATU.</p>    </div>
   </div>
 </header>
 
@@ -158,6 +175,10 @@
   <div class="search-box">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
     <input class="search" id="q" type="search" placeholder="Buscar proyecto…" aria-label="Buscar proyecto">
+  </div>
+  <div class="section-head" id="proyectos">
+    <h3>Proyectos disponibles</h3>
+    <span id="count"></span>
   </div>
   <div class="grid" id="grid"></div>
   <p class="empty" id="empty">No hay proyectos que coincidan con la búsqueda.</p>
@@ -168,7 +189,18 @@
   </div>
 </main>
 
-<footer>Portal de Proyectos ATU · Actualizado: octubre 2026</footer>
+<footer>
+  <div class="wrap foot">
+    <div>
+      <b>Portal de Gestión Presupuestal</b>
+      <span>Autoridad de Transporte Urbano para Lima y Callao</span>
+    </div>
+    <div class="foot-links">
+      <a href="#proyectos">Proyectos</a>
+      <span>Actualizado: octubre 2026</span>
+    </div>
+  </div>
+</footer>
 
 <script>
 /* =========================================================
@@ -181,7 +213,7 @@ const PROYECTOS = [
   {
     nombre: "Tablero de ejecución presupuestal 2026",
     descripcion: "Seguimiento diario de la ejecución presupuestal a partir de la data del SIAF, por unidad orgánica y concepto.",
-    url: "",
+    url: "https://reneearmasr.github.io/Tablero_ATU/",
     etiqueta: "2026",
     icono: "chart",
     estilo: "v1"
@@ -189,7 +221,7 @@ const PROYECTOS = [
   {
     nombre: "Programación y Modificación Presupuestal",
     descripcion: "Programación y reprogramación financiera del POI por unidad orgánica y clasificador de gasto, con aprobación de OPP.",
-    url: "",
+    url: "https://reneearmasr.github.io/programacion_ATU/",
     etiqueta: "POI",
     icono: "calendar",
     estilo: "v2"
@@ -197,7 +229,7 @@ const PROYECTOS = [
   {
     nombre: "Previsiones Presupuestarias 2027–2034",
     descripcion: "Registro y consolidación de las previsiones presupuestarias multianuales de las unidades orgánicas.",
-    url: "",
+    url: "https://reneearmasr.github.io/previsiones-atu/",
     etiqueta: "2027–2034",
     icono: "forecast",
     estilo: "v3"
@@ -228,9 +260,13 @@ function render(filtro=""){
       </a>
       ${ok?'<span class="tag ok"><i></i>Ingreso con tu usuario</span>':'<span class="tag pend">Enlace pendiente</span>'}
     </article>`;
-  }).join("");
+  }).join("") + (f?"":`<article class="card soon" style="animation-delay:${.15+lista.length*.1}s">
+      <div class="plus"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>
+      <h2>Próximamente</h2>
+      <p>Nuevos proyectos se irán incorporando a este portal.</p>
+    </article>`);
   document.getElementById("empty").style.display=lista.length?"none":"block";
-}
+  document.getElementById("count").textContent=lista.length+(lista.length===1?" proyecto":" proyectos");}
 document.getElementById("q").addEventListener("input",e=>render(e.target.value));
 render();
 </script>
