@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal de Proyectos ATU</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4f6f9; --surface:#ffffff; --text:#1c2430; --muted:#5d6878;
+    --border:#e2e7ee; --brand:#0b4f8a; --brand-soft:#e7f0f9; --accent:#d9a400;
+    --warn-bg:#fff6e0; --warn-text:#8a6200; --shadow:0 1px 2px rgba(16,24,40,.06),0 4px 14px rgba(16,24,40,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0f141b; --surface:#171e28; --text:#e7ecf2; --muted:#9aa6b6;
+      --border:#273242; --brand:#5aa2e6; --brand-soft:#1b2a3c; --accent:#f0c040;
+      --warn-bg:#3a3010; --warn-text:#f0d27a; --shadow:none;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0f141b; --surface:#171e28; --text:#e7ecf2; --muted:#9aa6b6;
+    --border:#273242; --brand:#5aa2e6; --brand-soft:#1b2a3c; --accent:#f0c040;
+    --warn-bg:#3a3010; --warn-text:#f0d27a; --shadow:none;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.5}
+  header{background:var(--brand);color:#fff;padding:32px 16px 72px}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+  header .wrap{padding:0}
+  .eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.85;margin:0 0 6px}
+  h1{margin:0;font-size:clamp(24px,4vw,34px);font-weight:700}
+  header p.sub{margin:8px 0 0;max-width:640px;opacity:.9}
+  main{margin-top:-48px;padding-bottom:48px}
+  .toolbar{display:flex;gap:12px;margin-bottom:20px}
+  .search{flex:1;padding:12px 14px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text);font:inherit;box-shadow:var(--shadow)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;display:flex;flex-direction:column;box-shadow:var(--shadow);border-top:4px solid var(--brand)}
+  .icon{width:44px;height:44px;border-radius:10px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;margin-bottom:14px}
+  .card h2{font-size:17px;margin:0 0 6px}
+  .card p{color:var(--muted);font-size:14px;margin:0 0 18px;flex:1}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border-radius:9px;background:var(--brand);color:#fff;text-decoration:none;font-weight:600;font-size:14px}
+  .btn:hover{filter:brightness(1.08)}
+  .btn.disabled{background:var(--border);color:var(--muted);pointer-events:none}
+  .tag{font-size:12px;margin-top:10px;color:var(--muted)}
+  .tag.pend{color:var(--warn-text);background:var(--warn-bg);padding:3px 8px;border-radius:6px;align-self:flex-start}
+  .note{margin-top:28px;background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:14px 16px;font-size:14px;color:var(--muted)}
+  footer{text-align:center;font-size:13px;color:var(--muted);padding:24px 16px}
+  .empty{color:var(--muted);padding:20px 0;display:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Autoridad de Transporte Urbano · ATU</p>
+    <h1>Portal de Proyectos de Gestión Presupuestal</h1>
+    <p class="sub">Acceso centralizado a las herramientas de seguimiento, programación financiera y previsiones presupuestarias.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="toolbar">
+    <input class="search" id="q" type="search" placeholder="Buscar proyecto…" aria-label="Buscar proyecto">
+  </div>
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty">No hay proyectos que coincidan con la búsqueda.</p>
+
+  <div class="note">
+    Este portal es un acceso adicional. Cada herramienta mantiene su propio enlace e ingreso individual;
+    al abrirla se te pedirá tu usuario como siempre.
+  </div>
+</main>
+
+<footer>Portal de Proyectos ATU · Actualizado: <span id="upd">octubre 2026</span></footer>
+
+<script>
+/* =========================================================
+   CONFIGURACIÓN: edita solo esta lista.
+   - url: pega el enlace de acceso que ya existe (deja "" si aún no lo tienes)
+   - Para agregar un proyecto nuevo, copia un bloque { ... } y cámbialo.
+   ========================================================= */
+const PROYECTOS = [
+  {
+    nombre: "Tablero de seguimiento",
+    descripcion: "Seguimiento diario de la ejecución presupuestal a partir de la data del SIAF, por unidad orgánica y concepto.",
+    url: "",
+    icono: "chart"
+  },
+  {
+    nombre: "Programación financiera (POI)",
+    descripcion: "Programación y reprogramación financiera del POI por unidad orgánica y clasificador de gasto, con aprobación de OPP.",
+    url: "",
+    icono: "calendar"
+  },
+  {
+    nombre: "Previsiones presupuestarias",
+    descripcion: "Registro y consolidación de las previsiones presupuestarias de las unidades orgánicas.",
+    url: "",
+    icono: "forecast"
+  }
+];
+
+const ICONOS = {
+  chart:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>',
+  forecast:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  calendar:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>',
+  edit:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg>'
+};
+
+function render(filtro=""){
+  const grid=document.getElementById("grid");
+  const f=filtro.trim().toLowerCase();
+  const lista=PROYECTOS.filter(p=>(p.nombre+" "+p.descripcion).toLowerCase().includes(f));
+  grid.innerHTML=lista.map(p=>{
+    const ok=p.url && p.url.trim()!=="";
+    return `<article class="card">
+      <div class="icon">${ICONOS[p.icono]||ICONOS.chart}</div>
+      <h2>${p.nombre}</h2>
+      <p>${p.descripcion}</p>
+      <a class="btn ${ok?"":"disabled"}" href="${ok?p.url:"#"}" target="_blank" rel="noopener">
+        Abrir
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+      </a>
+      ${ok?'<span class="tag">Ingreso con tu usuario</span>':'<span class="tag pend">Enlace pendiente</span>'}
+    </article>`;
+  }).join("");
+  document.getElementById("empty").style.display=lista.length?"none":"block";
+}
+document.getElementById("q").addEventListener("input",e=>render(e.target.value));
+render();
+</script>
+</body>
+</html>
