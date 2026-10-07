@@ -184,7 +184,7 @@
 
   <div class="note">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
-    <span>Este portal es un acceso adicional. Cada herramienta mantiene su propio enlace e ingreso individual; al abrirla se te pedirá tu usuario como siempre.</span>
+    <span>Este portal es un acceso adicional. Cada herramienta mantiene su propio enlace y forma de acceso, indicada debajo del botón de cada proyecto.</span>
   </div>
 </main>
 
@@ -205,6 +205,7 @@
 /* =========================================================
    CONFIGURACIÓN: edita solo esta lista.
    - url: pega el enlace de acceso que ya existe (deja "" si aún no lo tienes)
+   - acceso: forma de ingreso que se muestra debajo del botón
    - etiqueta: texto corto que aparece arriba a la derecha de cada tarjeta
    - estilo: v1 (azul), v2 (verde), v3 (dorado)
    ========================================================= */
@@ -213,6 +214,7 @@ const PROYECTOS = [
     nombre: "Tablero de ejecución presupuestal 2026",
     descripcion: "Seguimiento diario de la ejecución presupuestal a partir de la data del SIAF, por unidad orgánica y concepto.",
     url: "https://reneearmasr.github.io/Tablero_ATU/",
+    acceso: "Acceso libre",
     etiqueta: "2026",
     icono: "chart",
     estilo: "v1"
@@ -221,6 +223,7 @@ const PROYECTOS = [
     nombre: "Programación y Modificación Presupuestal",
     descripcion: "Programación y reprogramación financiera del POI por unidad orgánica y clasificador de gasto, con aprobación de OPP.",
     url: "https://reneearmasr.github.io/programacion_ATU/",
+    acceso: "Acceso con usuario y contraseña",
     etiqueta: "POI",
     icono: "calendar",
     estilo: "v2"
@@ -229,6 +232,7 @@ const PROYECTOS = [
     nombre: "Previsiones Presupuestarias 2027–2034",
     descripcion: "Registro y consolidación de las previsiones presupuestarias multianuales de las unidades orgánicas.",
     url: "https://reneearmasr.github.io/previsiones-atu/",
+    acceso: "Acceso con cuenta registrada gmail",
     etiqueta: "2027–2034",
     icono: "forecast",
     estilo: "v3"
@@ -257,7 +261,7 @@ function render(filtro=""){
         Ingresar
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
       </a>
-      ${ok?'<span class="tag ok"><i></i>Ingreso con tu usuario</span>':'<span class="tag pend">Enlace pendiente</span>'}
+      ${ok?'<span class="tag ok"><i></i>'+(p.acceso||'Ingreso con tu usuario')+'</span>':'<span class="tag pend">Enlace pendiente</span>'}
     </article>`;
   }).join("") + (f?"":`<article class="card soon" style="animation-delay:${.15+lista.length*.1}s">
       <div class="plus"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>
