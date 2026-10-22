@@ -90,6 +90,7 @@
   .card.v2{--c1:#0f8a6b;--c2:#35d0a0}
   .card.v3{--c1:#c47a00;--c2:#f2b705}
   .card.v4{--c1:#6d3fc0;--c2:#a78bfa}
+  .card.v5{--c1:#c0264d;--c2:#f2667f}
 
   .head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;position:relative;z-index:1}
   .icon{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;color:#fff;
@@ -208,7 +209,7 @@
    - url: pega el enlace de acceso que ya existe (deja "" si aún no lo tienes)
    - acceso: forma de ingreso que se muestra debajo del botón
    - etiqueta: texto corto que aparece arriba a la derecha de cada tarjeta
-   - estilo: v1 (azul), v2 (verde), v3 (dorado), v4 (morado)
+   - estilo: v1 (azul), v2 (verde), v3 (dorado), v4 (morado), v5 (rojo)
    ========================================================= */
 const PROYECTOS = [
   {
@@ -246,10 +247,20 @@ const PROYECTOS = [
     etiqueta: "Locadores",
     icono: "people",
     estilo: "v4"
+  },
+  {
+    nombre: "POI Multianual",
+    descripcion: "Etapas del POI Multianual, notas de modificación, Alineamiento con el CNM, Ejecución y Seguimiento del POI, PEI",
+    url: "https://reneearmasr.github.io/POI/",
+    acceso: "Acceso con Usuario y contraseña",
+    etiqueta: "Multianual",
+    icono: "target",
+    estilo: "v5"
   }
 ];
 
 const ICONOS = {
+  target:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>',
   people:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0113 0"/><path d="M16 4.5a3.5 3.5 0 010 7M18 14a6 6 0 013.5 6"/></svg>',
   chart:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>',
   forecast:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>',
