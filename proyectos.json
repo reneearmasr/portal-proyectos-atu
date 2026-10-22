@@ -1,0 +1,102 @@
+{
+  "actualizado": "octubre 2026",
+  "categorias": [
+    { "id": "planeamiento", "nombre": "Planeamiento" },
+    { "id": "presupuesto", "nombre": "Presupuesto" },
+    { "id": "ejecucion", "nombre": "Ejecución" },
+    { "id": "gestion", "nombre": "Gestión interna" }
+  ],
+  "accesos": [
+    { "id": "libre", "nombre": "Acceso libre" },
+    { "id": "usuario", "nombre": "Usuario y contraseña" },
+    { "id": "gmail", "nombre": "Cuenta Gmail registrada" }
+  ],
+  "ciclo": [
+    { "nombre": "Planeamiento", "texto": "POI Multianual alineado al PEI y al CNM", "proyectos": ["poi-multianual"] },
+    { "nombre": "Programación", "texto": "Programación y reprogramación financiera del POI", "proyectos": ["programacion"] },
+    { "nombre": "Previsiones", "texto": "Previsiones presupuestarias multianuales", "proyectos": ["previsiones"] },
+    { "nombre": "Ejecución", "texto": "Seguimiento diario con data del SIAF", "proyectos": ["tablero-2026"] },
+    { "nombre": "Seguimiento", "texto": "Ejecución y seguimiento del POI", "proyectos": ["poi-multianual"] }
+  ],
+  "proyectos": [
+    {
+      "id": "tablero-2026",
+      "nombre": "Tablero de ejecución presupuestal 2026",
+      "descripcion": "Seguimiento diario de la ejecución presupuestal a partir de la data del SIAF, por unidad orgánica y concepto.",
+      "detalle": [
+        "Ejecución presupuestal con data del SIAF",
+        "Consulta por unidad orgánica y por concepto",
+        "Actualización diaria"
+      ],
+      "url": "https://reneearmasr.github.io/Tablero_ATU/",
+      "acceso": "libre",
+      "categoria": "ejecucion",
+      "etiqueta": "2026",
+      "icono": "chart",
+      "estilo": "v1"
+    },
+    {
+      "id": "programacion",
+      "nombre": "Programación y Modificación Presupuestal",
+      "descripcion": "Programación y reprogramación financiera del POI por unidad orgánica y clasificador de gasto, con aprobación de OPP.",
+      "detalle": [
+        "Programación financiera del POI",
+        "Reprogramación por unidad orgánica y clasificador de gasto",
+        "Aprobación de la OPP"
+      ],
+      "url": "https://reneearmasr.github.io/programacion_ATU/",
+      "acceso": "usuario",
+      "categoria": "presupuesto",
+      "etiqueta": "POI",
+      "icono": "calendar",
+      "estilo": "v2"
+    },
+    {
+      "id": "previsiones",
+      "nombre": "Previsiones Presupuestarias 2027–2034",
+      "descripcion": "Registro y consolidación de las previsiones presupuestarias multianuales de las unidades orgánicas.",
+      "detalle": [
+        "Registro de previsiones por unidad orgánica",
+        "Consolidación multianual 2027–2034"
+      ],
+      "url": "https://reneearmasr.github.io/previsiones-atu/",
+      "acceso": "gmail",
+      "categoria": "presupuesto",
+      "etiqueta": "2027–2034",
+      "icono": "forecast",
+      "estilo": "v3"
+    },
+    {
+      "id": "locadores",
+      "nombre": "Base de datos de locadores",
+      "descripcion": "Registro y consulta de la base de datos de locadores de la ATU.",
+      "detalle": [
+        "Base de datos de locadores"
+      ],
+      "url": "https://reneearmasr.github.io/BaseDatosLocadores/",
+      "acceso": "gmail",
+      "categoria": "gestion",
+      "etiqueta": "Locadores",
+      "icono": "people",
+      "estilo": "v4"
+    },
+    {
+      "id": "poi-multianual",
+      "nombre": "POI Multianual",
+      "descripcion": "Etapas del POI Multianual, notas de modificación, alineamiento con el CNM, ejecución y seguimiento del POI y PEI.",
+      "detalle": [
+        "Etapas del POI Multianual",
+        "Notas de modificación (NMP) con sus anexos",
+        "Alineamiento con el CNM",
+        "Ejecución y seguimiento del POI",
+        "PEI"
+      ],
+      "url": "https://reneearmasr.github.io/POI/",
+      "acceso": "usuario",
+      "categoria": "planeamiento",
+      "etiqueta": "Multianual",
+      "icono": "target",
+      "estilo": "v5"
+    }
+  ]
+}
