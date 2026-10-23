@@ -245,12 +245,12 @@
   html.mano-on .card.link, html.mano-on .card.link *{cursor:none}
   #mano{position:fixed;left:0;top:0;width:40px;height:40px;pointer-events:none;z-index:9999;opacity:0;transition:opacity .2s;will-change:transform}
   #mano.on{opacity:1}
-  #mano .rot{width:100%;height:100%;transform-origin:50% 6%;transform:scale(var(--s,1));transition:transform .12s ease-out}
+  #mano .rot{width:100%;height:100%;transform-origin:94% 50%;transform:scale(var(--s,1));transition:transform .12s ease-out}
   #mano.press .rot{--s:.78}
-  #mano span{display:block;font-size:34px;line-height:40px;text-align:center;transform-origin:50% 6%;filter:drop-shadow(0 5px 6px rgba(0,0,0,.35))}
+  #mano span{display:block;font-size:34px;line-height:40px;text-align:center;transform-origin:94% 50%;filter:drop-shadow(0 5px 6px rgba(0,0,0,.35))}
   #mano.on span{animation:senala 1.1s ease-in-out infinite}
   .onda{position:fixed;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;border:3px solid var(--sky);pointer-events:none;z-index:9998;animation:onda .55s ease-out forwards}
-  @keyframes senala{0%,60%,100%{transform:none}30%{transform:translateY(-6px) scale(1.06)}}
+  @keyframes senala{0%,60%,100%{transform:none}30%{transform:translateX(6px) scale(1.06)}}
   @keyframes onda{from{transform:scale(.3);opacity:1}to{transform:scale(1.6);opacity:0}}
 
   @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
@@ -326,7 +326,7 @@
 </main>
 
 <dialog id="dlg" aria-labelledby="dlg-title"></dialog>
-<div id="mano" aria-hidden="true"><div class="rot"><span>👆</span></div></div>
+<div id="mano" aria-hidden="true"><div class="rot"><span>👉</span></div></div>
 
 <footer>
   <div class="wrap foot">
@@ -601,7 +601,7 @@ dlg.addEventListener("click",e=>{
 });
 
 /* ---------- Manito animada ----------
-   Sobre una tarjeta señala con el índice (pequeño toque hacia arriba) y al hacer clic "presiona". */
+   Sobre una tarjeta señala con el índice en horizontal (pequeño toque a la derecha) y al hacer clic "presiona". */
 (function(){
   if(reduce||!matchMedia("(hover: hover) and (pointer: fine)").matches) return;
   document.documentElement.classList.add("mano-on");
@@ -618,7 +618,7 @@ dlg.addEventListener("click",e=>{
   function paso(){
     if(!card){corriendo=false;return}
     x+=(mx-x)*.45; y+=(my-y)*.45;
-    mano.style.transform=`translate(${x-20}px,${y-2}px)`;
+    mano.style.transform=`translate(${x-38}px,${y-20}px)`;   // la punta del índice queda en el puntero
     requestAnimationFrame(paso);
   }
   document.addEventListener("pointermove",e=>{if(e.pointerType!=="mouse")return;mx=e.clientX;my=e.clientY;evaluar(e.target)});
