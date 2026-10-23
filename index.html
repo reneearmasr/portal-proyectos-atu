@@ -241,6 +241,22 @@
   .foot-links a{color:#fff;text-decoration:none;font-weight:600}
   .foot-links a:hover{color:var(--gold)}
 
+  /* ---------- Manito animada (reemplaza al cursor sobre las tarjetas) ---------- */
+  html.mano-on .card.link, html.mano-on .card.link *{cursor:none}
+  #mano{position:fixed;left:0;top:0;width:40px;height:40px;pointer-events:none;z-index:9999;opacity:0;transition:opacity .2s;will-change:transform}
+  #mano.on{opacity:1}
+  #mano .rot{width:100%;height:100%;transform-origin:50% 6%;transform:rotate(var(--r,0deg)) scale(var(--s,1));transition:transform .12s ease-out}
+  #mano.press .rot{--s:.78}
+  #mano span{display:block;font-size:34px;line-height:40px;text-align:center;transform-origin:50% 6%;filter:drop-shadow(0 5px 6px rgba(0,0,0,.35))}
+  #mano.card span{animation:tap 1s ease-in-out infinite}
+  #mano.btn span{animation:latido .6s ease-in-out infinite}
+  #mano.info span{animation:agita .45s ease-in-out infinite}
+  .onda{position:fixed;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;border:3px solid var(--sky);pointer-events:none;z-index:9998;animation:onda .55s ease-out forwards}
+  @keyframes tap{50%{transform:translateY(-7px)}}
+  @keyframes latido{50%{transform:scale(1.22)}}
+  @keyframes agita{25%{transform:rotate(-18deg)}75%{transform:rotate(18deg)}}
+  @keyframes onda{from{transform:scale(.3);opacity:1}to{transform:scale(1.6);opacity:0}}
+
   @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
   @keyframes pop{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
   @keyframes shine{to{left:130%}}
@@ -314,6 +330,7 @@
 </main>
 
 <dialog id="dlg" aria-labelledby="dlg-title"></dialog>
+<div id="mano" aria-hidden="true"><div class="rot"><span>👆</span></div></div>
 
 <footer>
   <div class="wrap foot">
@@ -586,6 +603,50 @@ dlg.addEventListener("click",e=>{
   const ir=e.target.closest("[data-ir]");
   if(ir){const u=JSON.parse(leer("ultimo-uso")||"{}");u[ir.dataset.ir]=Date.now();guardar("ultimo-uso",JSON.stringify(u));dlg.close();setTimeout(()=>render(true),300)}
 });
+
+/* ---------- Manito animada ----------
+   Sobre una tarjeta: se balancea al moverse y apunta al botón Ingresar;
+   sobre Ingresar late, sobre ⓘ se agita y al hacer clic "presiona". */
+(function(){
+  if(reduce||!matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+  document.documentElement.classList.add("mano-on");
+  const mano=$("#mano"),rot=mano.firstElementChild;
+  let mx=0,my=0,x=0,y=0,r=0,card=null,estadoMano="",corriendo=false;
+
+  function evaluar(el){
+    const c=el&&el.closest?el.closest(".card.link"):null;
+    if(c&&!card){x=mx;y=my}            // aparece donde está el mouse, sin "volar"
+    card=c;
+    estadoMano=!c?"":el.closest("[data-ir]")?"btn":el.closest("[data-ver]")?"info":"card";
+    mano.className=estadoMano?"on "+estadoMano:"";
+    if(card&&!corriendo){corriendo=true;requestAnimationFrame(paso)}
+  }
+  function paso(){
+    if(!card){corriendo=false;return}
+    const dx=mx-x;
+    x+=dx*.45; y+=(my-y)*.45;
+    let objetivo=Math.max(-22,Math.min(22,dx*.9));    // balanceo según la velocidad
+    if(estadoMano==="card"){
+      const b=card.querySelector("[data-ir]").getBoundingClientRect();
+      const ang=Math.atan2(b.top+b.height/2-my,b.left+b.width/2-mx)*180/Math.PI+90; // 👆 apunta hacia arriba
+      objetivo=((ang+540)%360)-180;
+    }
+    r+=((((objetivo-r)+540)%360)-180)*.18;
+    mano.style.transform=`translate(${x-20}px,${y-2}px)`;
+    rot.style.setProperty("--r",r.toFixed(1)+"deg");
+    requestAnimationFrame(paso);
+  }
+  document.addEventListener("pointermove",e=>{if(e.pointerType!=="mouse")return;mx=e.clientX;my=e.clientY;evaluar(e.target)});
+  addEventListener("scroll",()=>{if(mx||my) evaluar(document.elementFromPoint(mx,my))},{passive:true});
+  document.addEventListener("pointerdown",e=>{
+    if(!card||e.pointerType!=="mouse") return;
+    mano.classList.add("press");
+    const o=document.createElement("div");o.className="onda";o.style.left=e.clientX+"px";o.style.top=e.clientY+"px";
+    document.body.appendChild(o);setTimeout(()=>o.remove(),600);
+  });
+  document.addEventListener("pointerup",()=>mano.classList.remove("press"));
+  document.documentElement.addEventListener("pointerleave",()=>evaluar(null));
+})();
 
 $("#fase").addEventListener("click",e=>{
   const ir=e.target.closest("[data-ir]");
