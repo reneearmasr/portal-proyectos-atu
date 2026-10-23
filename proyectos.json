@@ -50,7 +50,7 @@
       "periodo": "Va desde el 1 de enero hasta el 31 de diciembre del año fiscal correspondiente.",
       "meses": [1, 12],
       "anio": "actual",
-      "proyectos": ["tablero-2026"]
+      "proyectos": ["tablero-2026", "programacion"]
     },
     {
       "nombre": "Evaluación",
