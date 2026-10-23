@@ -151,6 +151,7 @@
     background:radial-gradient(260px circle at var(--mx,80%) var(--my,0%), color-mix(in srgb,var(--c2) 22%, transparent), transparent 70%);
   }
   .card:hover{box-shadow:var(--shadow-hover)}
+  .card.link{cursor:pointer}
   .card:hover::after{opacity:1}
   .card.v1{--c1:#0b5cad;--c2:#2ea3f2}
   .card.v2{--c1:#0f8a6b;--c2:#35d0a0}
@@ -493,7 +494,7 @@ function render(animar){
   const usos=JSON.parse(leer("ultimo-uso")||"{}");
   $("#grid").innerHTML=lista.map((p,i)=>{
     const ok=p.url && p.url.trim()!=="";
-    return `<article class="card ${esc(p.estilo||"v1")}${animar?"":" reveal"}" data-id="${esc(p.id)}" style="transition-delay:${animar?0:i*.08}s">
+    return `<article class="card ${esc(p.estilo||"v1")}${ok?" link":""}${animar?"":" reveal"}" data-id="${esc(p.id)}" style="transition-delay:${animar?0:i*.08}s">
       <div class="head">
         <div class="icon">${ICONOS[p.icono]||ICONOS.chart}</div>
         <div class="badges">
@@ -543,7 +544,10 @@ grid.addEventListener("click",e=>{
   const ir=e.target.closest("[data-ir]");
   if(ir){const u=JSON.parse(leer("ultimo-uso")||"{}");u[ir.dataset.ir]=Date.now();guardar("ultimo-uso",JSON.stringify(u));setTimeout(()=>render(true),300);return}
   const ver=e.target.closest("[data-ver]");
-  if(ver) abrir(ver.dataset.ver);
+  if(ver){abrir(ver.dataset.ver);return}
+  // clic en cualquier otra parte de la tarjeta: abre la herramienta
+  const card=e.target.closest(".card.link");
+  if(card) card.querySelector("[data-ir]").click();
 });
 
 /* ---------- Ficha de detalle ---------- */
