@@ -196,6 +196,18 @@
         display:grid;place-items:center;cursor:pointer;transition:border-color .2s, color .2s}
   .more:hover{border-color:var(--c2);color:var(--c1)}
 
+  /* Indicadores en vivo dentro de la tarjeta */
+  .kpi{position:relative;z-index:1;margin:-8px 0 18px;padding:12px 14px;border-radius:14px;background:var(--surface-2);border:1px solid var(--border)}
+  .kpi-row{display:flex;justify-content:space-between;gap:10px}
+  .kpi-row div{min-width:0}
+  .kpi-row span{display:block;font-size:11.5px;color:var(--muted)}
+  .kpi-row b{display:block;font-size:15px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums}
+  .kpi-bar{height:6px;border-radius:6px;background:var(--border);margin-top:10px;overflow:hidden}
+  .kpi-bar i{display:block;height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--c1),var(--c2));transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+  .kpi small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+  .kpi.cargando b{color:transparent;border-radius:6px;background:linear-gradient(90deg,var(--border),var(--surface),var(--border));background-size:200% 100%;animation:brillo 1.2s linear infinite}
+  @keyframes brillo{to{background-position:-200% 0}}
+
   .tag{position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;margin-top:12px;color:var(--muted)}
   .tag i{width:7px;height:7px;border-radius:50%;background:#22c55e}
   .tag.usuario i{background:var(--sky)}
@@ -249,8 +261,10 @@
   #mano.press .rot{--s:.78}
   #mano span{display:block;font-size:34px;line-height:40px;text-align:center;transform-origin:94% 50%;filter:drop-shadow(0 5px 6px rgba(0,0,0,.35))}
   #mano.on span{animation:senala 1.1s ease-in-out infinite}
+  #mano.on.ok span{animation:pulgar .9s ease-out}
   .onda{position:fixed;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;border:3px solid var(--sky);pointer-events:none;z-index:9998;animation:onda .55s ease-out forwards}
-  @keyframes senala{0%,60%,100%{transform:none}30%{transform:translateX(6px) scale(1.06)}}
+  @keyframes senala{0%,60%,100%{transform:none}30%{transform:translateX(10px) scale(1.06)}}
+  @keyframes pulgar{0%{transform:scale(.6) rotate(-15deg)}35%{transform:scale(1.18) rotate(6deg)}60%,100%{transform:none}}
   @keyframes onda{from{transform:scale(.3);opacity:1}to{transform:scale(1.6);opacity:0}}
 
   @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
@@ -490,6 +504,54 @@ function marcar(){
   });
 }
 
+/* ---------- Indicadores en vivo ----------
+   Cada proyecto puede tener "indicador" en proyectos.json. Se muestran solo totales;
+   si la fuente no responde, el recuadro desaparece y la tarjeta sigue funcionando. */
+const nfM=new Intl.NumberFormat("es-PE",{minimumFractionDigits:1,maximumFractionDigits:1});
+const millones=v=>"S/ "+nfM.format(v/1e6)+" M";
+const fechaCorta=s=>{const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||"");return m?`${m[3]}/${m[2]}/${m[1]}`:(s||"")};
+const INDICADORES={
+  tablero:{
+    molde:`<div class="kpi-row"><div><span>PIM</span><b data-v="pim">S/ 000.0 M</b></div><div><span>Devengado</span><b data-v="dev">S/ 000.0 M</b></div><div><span>Avance</span><b data-v="pct">00.0%</b></div></div>
+           <div class="kpi-bar"><i data-v="bar"></i></div><small data-v="corte">&nbsp;</small>`,
+    async leer(){
+      const r=await fetch("https://reneearmasr.github.io/Tablero_ATU/datos.json",{cache:"no-cache"});
+      if(!r.ok) throw new Error("HTTP "+r.status);
+      const d=await r.json();
+      let pim=0,dev=0;
+      (d.data||[]).forEach(f=>{pim+=+f.pim||0;(f.dv||[]).forEach(v=>dev+=+v||0)});
+      return {pim,dev,corte:d.fecha_corte,hora:d.hora_corte};
+    },
+    pintar(el,v){
+      const pct=v.pim?v.dev/v.pim:0;
+      el.querySelector('[data-v="pim"]').textContent=millones(v.pim);
+      el.querySelector('[data-v="dev"]').textContent=millones(v.dev);
+      el.querySelector('[data-v="pct"]').textContent=(pct*100).toLocaleString("es-PE",{minimumFractionDigits:1,maximumFractionDigits:1})+"%";
+      el.querySelector('[data-v="corte"]').textContent="Corte SIAF: "+fechaCorta(v.corte)+(v.hora?" · "+v.hora:"");
+      requestAnimationFrame(()=>el.querySelector('[data-v="bar"]').style.width=Math.min(100,pct*100)+"%");
+    }
+  }
+};
+const VALORES={};   // por indicador: valores leídos, null si falló, ausente si aún no se pidió
+function pintarIndicadores(){
+  document.querySelectorAll("[data-kpi]").forEach(el=>{
+    const k=el.dataset.kpi,ind=INDICADORES[k];
+    let ultimo=null;                       // lo último visto en este navegador, se muestra mientras se actualiza
+    try{ultimo=JSON.parse(leer("kpi-"+k)||"null")}catch(e){}
+    const v=VALORES[k]||ultimo;
+    if(v){el.classList.remove("cargando");ind.pintar(el,v)}
+    else if(VALORES[k]===null){el.remove();return}
+    if(k in VALORES) return;
+    VALORES[k]=undefined;                  // marca "pedido" para no repetir la lectura
+    ind.leer()
+      .then(v=>{VALORES[k]=v;guardar("kpi-"+k,JSON.stringify(v))})
+      .catch(err=>{VALORES[k]=ultimo||null;console.warn("indicador "+k+":",err)})
+      .finally(()=>document.querySelectorAll(`[data-kpi="${k}"]`).forEach(e=>{
+        if(VALORES[k]){e.classList.remove("cargando");ind.pintar(e,VALORES[k])} else e.remove();
+      }));
+  });
+}
+
 /* ---------- Tarjetas ---------- */
 const nombreAcceso=id=>((DATA.accesos||[]).find(a=>a.id===id)||{}).nombre||id||"Ingreso con tu usuario";
 const nombreCat=id=>((DATA.categorias||[]).find(c=>c.id===id)||{}).nombre||"";
@@ -517,6 +579,7 @@ function render(animar){
       </div>
       <h2>${esc(p.nombre)}</h2>
       <p>${esc(p.descripcion)}</p>
+      ${INDICADORES[p.indicador]?`<div class="kpi cargando" data-kpi="${esc(p.indicador)}">${INDICADORES[p.indicador].molde}</div>`:""}
       <div class="actions">
         <a class="btn ${ok?"":"disabled"}" href="${ok?esc(p.url):"#"}" target="_blank" rel="noopener" data-ir="${esc(p.id)}">Ingresar ${FLECHA}</a>
         <button class="more" type="button" data-ver="${esc(p.id)}" aria-label="Ver detalle de ${esc(p.nombre)}" title="Ver detalle">${INFO}</button>
@@ -530,6 +593,7 @@ function render(animar){
     </article>`);
   $("#count").textContent=lista.length+(lista.length===1?" proyecto":" proyectos");
   marcar();
+  pintarIndicadores();
   if(!animar) revelar();
 }
 
@@ -601,16 +665,23 @@ dlg.addEventListener("click",e=>{
 });
 
 /* ---------- Manito animada ----------
-   Sobre una tarjeta señala con el índice en horizontal (pequeño toque a la derecha) y al hacer clic "presiona". */
+   Sobre una tarjeta señala con el índice en horizontal (toque a la derecha), de vez en cuando hace 👍, y al hacer clic "presiona". */
 (function(){
   if(reduce||!matchMedia("(hover: hover) and (pointer: fine)").matches) return;
   document.documentElement.classList.add("mano-on");
   const mano=$("#mano");
-  let mx=0,my=0,x=0,y=0,card=null,corriendo=false;
+  const dedo=mano.querySelector("span");
+  let mx=0,my=0,x=0,y=0,card=null,corriendo=false,ciclo=null;
 
+  // cada 4 s cambia un momento a 👍 y vuelve a señalar
+  function pulgar(){
+    dedo.textContent="👍"; mano.classList.add("ok");
+    setTimeout(()=>{dedo.textContent="👉"; mano.classList.remove("ok")},900);
+  }
   function evaluar(el){
     const c=el&&el.closest?el.closest(".card.link"):null;
-    if(c&&!card){x=mx;y=my}            // aparece donde está el mouse, sin "volar"
+    if(c&&!card){x=mx;y=my;ciclo=setInterval(pulgar,4000)}   // aparece donde está el mouse, sin "volar"
+    if(!c&&card){clearInterval(ciclo);dedo.textContent="👉";mano.classList.remove("ok")}
     card=c;
     mano.classList.toggle("on",!!c);
     if(card&&!corriendo){corriendo=true;requestAnimationFrame(paso)}
