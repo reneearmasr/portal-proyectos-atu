@@ -158,6 +158,7 @@
   .card.v3{--c1:#c47a00;--c2:#f2b705}
   .card.v4{--c1:#6d3fc0;--c2:#a78bfa}
   .card.v5{--c1:#c0264d;--c2:#f2667f}
+  .card.v6{--c1:#0e7490;--c2:#22b8cf}
 
   .head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:18px;position:relative;z-index:1}
   .icon{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;color:#fff;flex:none;
@@ -366,7 +367,8 @@ const ICONOS = {
   people:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0113 0"/><path d="M16 4.5a3.5 3.5 0 010 7M18 14a6 6 0 013.5 6"/></svg>',
   chart:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>',
   forecast:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>',
-  calendar:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h3M8 17h6"/></svg>'
+  calendar:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h3M8 17h6"/></svg>',
+  gavel:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l6 6M11 7l6 6M12.5 5.5l-5 5 3 3 5-5"/><path d="M9 12l-6 6 2 2 6-6M13 21h8"/></svg>'
 };
 const FLECHA='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>';
 const INFO='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>';
@@ -531,6 +533,23 @@ const INDICADORES={
       el.querySelector('[data-v="pct"]').textContent=(pct*100).toLocaleString("es-PE",{minimumFractionDigits:1,maximumFractionDigits:1})+"%";
       el.querySelector('[data-v="corte"]').textContent="Corte SIAF: "+fechaCorta(v.corte)+(v.hora?" · "+v.hora:"");
       requestAnimationFrame(()=>el.querySelector('[data-v="bar"]').style.width=Math.min(100,pct*100)+"%");
+    }
+  },
+  seace:{
+    molde:`<div class="kpi-row"><div><span>Procesos vigentes</span><b data-v="vig">00</b></div><div><span>Requieren atención</span><b data-v="aten">00</b></div></div>
+           <small data-v="corte">&nbsp;</small>`,
+    async leer(){
+      const r=await fetch("seace/procesos.json",{cache:"no-cache"});
+      if(!r.ok) throw new Error("HTTP "+r.status);
+      const d=await r.json(),P=d.procesos||[];
+      // atención: apelaciones, contratos pendientes y procesos retrotraídos
+      return {vig:P.length,aten:P.filter(p=>["apelacion","contrato","retrotraido"].includes(p.grupo)).length,corte:d.generado};
+    },
+    pintar(el,v){
+      el.querySelector('[data-v="vig"]').textContent=v.vig;
+      el.querySelector('[data-v="aten"]').textContent=v.aten;
+      const g=new Date(v.corte);
+      el.querySelector('[data-v="corte"]').textContent="Actualizado: "+g.toLocaleDateString("es-PE",{day:"2-digit",month:"2-digit",year:"numeric"})+" · "+g.toLocaleTimeString("es-PE",{hour:"2-digit",minute:"2-digit"});
     }
   }
 };
