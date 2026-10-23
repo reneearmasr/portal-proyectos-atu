@@ -248,9 +248,9 @@
   #mano .rot{width:100%;height:100%;transform-origin:50% 6%;transform:scale(var(--s,1));transition:transform .12s ease-out}
   #mano.press .rot{--s:.78}
   #mano span{display:block;font-size:34px;line-height:40px;text-align:center;transform-origin:50% 6%;filter:drop-shadow(0 5px 6px rgba(0,0,0,.35))}
-  #mano.on span{animation:agita .45s ease-in-out infinite}
+  #mano.on span{animation:senala 1.1s ease-in-out infinite}
   .onda{position:fixed;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;border:3px solid var(--sky);pointer-events:none;z-index:9998;animation:onda .55s ease-out forwards}
-  @keyframes agita{25%{transform:rotate(-18deg)}75%{transform:rotate(18deg)}}
+  @keyframes senala{0%,60%,100%{transform:none}30%{transform:translateY(-6px) scale(1.06)}}
   @keyframes onda{from{transform:scale(.3);opacity:1}to{transform:scale(1.6);opacity:0}}
 
   @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
@@ -601,7 +601,7 @@ dlg.addEventListener("click",e=>{
 });
 
 /* ---------- Manito animada ----------
-   Sobre una tarjeta se agita de lado a lado y al hacer clic "presiona". */
+   Sobre una tarjeta señala con el índice (pequeño toque hacia arriba) y al hacer clic "presiona". */
 (function(){
   if(reduce||!matchMedia("(hover: hover) and (pointer: fine)").matches) return;
   document.documentElement.classList.add("mano-on");
