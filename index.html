@@ -104,29 +104,35 @@
   .step.on .dot{background:linear-gradient(135deg,var(--navy),var(--sky));border-color:transparent;color:#fff;transform:scale(1.12)}
   .step:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
 
-  /* Barra de búsqueda y filtros */
-  .toolbar{padding:14px;margin-bottom:22px;display:flex;flex-direction:column;gap:12px;position:sticky;top:10px;z-index:5;animation:rise .8s .15s ease both}
-  .search-box{position:relative}
-  .search-box svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted)}
-  .search{width:100%;padding:13px 52px 13px 44px;border-radius:12px;border:1px solid var(--border);background:var(--surface-2);
-          color:var(--text);font:inherit;transition:border-color .2s, box-shadow .2s}
-  .search:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 4px rgba(46,163,242,.2)}
-  .kbd{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--muted);border:1px solid var(--border);
-       border-radius:6px;padding:1px 7px;background:var(--surface)}
-  .filters{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
-  .fgroup{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-  .fgroup > span{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-right:2px}
-  .chip{border:1px solid var(--border);background:var(--surface);padding:6px 12px;border-radius:999px;font-size:13px;cursor:pointer;
-        transition:background .2s, border-color .2s, color .2s}
-  .chip:hover{border-color:var(--sky)}
-  .chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
-  :root[data-theme="dark"] .chip.on{background:var(--sky);border-color:var(--sky);color:#0b1220}
-  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .chip.on{background:var(--sky);border-color:var(--sky);color:#0b1220}}
-  .clear{margin-left:auto;background:none;border:0;color:var(--blue);font-weight:700;font-size:13px;cursor:pointer;padding:6px 4px;visibility:hidden}
-  .clear.show{visibility:visible}
+  .curso{display:inline-block;margin-top:4px;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;
+         color:#0f7a4f;background:#dcfce7;border:1px solid #a7f3c4}
+  :root[data-theme="dark"] .curso{color:#86efac;background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.35)}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .curso{color:#86efac;background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.35)}}
 
-  .section-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 16px;scroll-margin-top:170px}
-  @media (max-height:760px){.toolbar{position:static}.section-head{scroll-margin-top:16px}}
+  /* Ficha de la fase seleccionada */
+  .fase{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.2,.8,.2,1)}
+  .fase.open{grid-template-rows:1fr}
+  .fase > div{overflow:hidden}
+  .fase-in{margin-top:18px;padding:20px;border-radius:16px;background:var(--surface-2);border:1px solid var(--border)}
+  .fase-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+  .fase-top h4{margin:0;font-size:18px;font-weight:800}
+  .fase-top small{color:var(--muted);font-size:13px}
+  .fase-x{flex:none;width:32px;height:32px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;display:grid;place-items:center}
+  .fase-x:hover{color:var(--text)}
+  .fase-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .fase-cols div{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 16px}
+  .fase-cols b{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--blue);margin-bottom:6px}
+  :root[data-theme="dark"] .fase-cols b{color:var(--sky)}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .fase-cols b{color:var(--sky)}}
+  .fase-cols p{margin:0;font-size:14px;color:var(--muted)}
+  .fase-tools{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13.5px;color:var(--muted)}
+  .fase-tools a{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;text-decoration:none;font-weight:700;
+                color:#fff;background:linear-gradient(135deg,var(--navy),var(--blue))}
+  .fase-tools a:hover{filter:brightness(1.15)}
+
+  .section-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 16px}
+  .card.dim{opacity:.35;filter:saturate(.4)}
+  .card.hl{box-shadow:0 0 0 3px var(--c2),var(--shadow-hover)}
   .section-head h3{margin:0;font-size:20px;font-weight:800}
   .section-head span{font-size:13px;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:4px 12px;border-radius:999px}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:22px}
@@ -164,7 +170,6 @@
   .recent i{width:6px;height:6px;border-radius:50%;background:var(--sky)}
   .card h2{font-size:20px;line-height:1.25;margin:0 0 8px;position:relative;z-index:1}
   .card p{color:var(--muted);font-size:14.5px;margin:0 0 22px;flex:1;position:relative;z-index:1}
-  mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
 
   /* ---------- Botones ---------- */
   .actions{display:flex;gap:8px;position:relative;z-index:1}
@@ -202,8 +207,6 @@
   .soon h2{color:var(--muted)}
   .soon p{flex:0;margin:0}
 
-  .empty{color:var(--muted);padding:30px 0;text-align:center;display:none}
-  .empty button{background:none;border:0;color:var(--blue);font-weight:700;cursor:pointer;text-decoration:underline}
   .error{display:none;margin-bottom:18px;padding:14px 16px;border-radius:14px;background:#fdecef;color:#8a1530;border:1px solid #f6c3cf;font-size:14px}
 
   .note{margin-top:30px;display:flex;gap:12px;align-items:flex-start;padding:16px 18px;font-size:14px;color:var(--muted)}
@@ -247,15 +250,14 @@
     header{padding-bottom:60px}
     .sub{font-size:15px}
     .stat{min-width:0;flex:1;padding:10px 12px}.stat b{font-size:22px}
-    .toolbar{position:static}
     .ciclo-head{flex-direction:column;gap:2px}
+    .fase-cols{grid-template-columns:1fr}
     .steps{grid-template-columns:1fr;gap:4px}
     .steps::before{left:21px;right:auto;top:22px;bottom:22px;width:3px;height:auto;background:linear-gradient(180deg,#0f8a6b,#c47a00,#0b5cad,#c0264d)}
     .step{display:grid;grid-template-columns:44px 1fr;column-gap:12px;text-align:left;align-items:center;padding:4px 0}
-    .step .dot{margin:0;grid-row:span 2}
-    .kbd{display:none}
-    .clear{margin-left:0}
+    .step .dot{margin:0;grid-row:span 3}
   }
+  @media (min-width:641px) and (max-width:900px){.fase-cols{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -280,7 +282,7 @@
       </div>
       <div class="stats">
         <div class="stat"><b data-count="herramientas">0</b><span>herramientas</span></div>
-        <div class="stat"><b data-count="etapas">0</b><span>etapas del ciclo</span></div>
+        <div class="stat"><b data-count="etapas">0</b><span>fases del ciclo</span></div>
         <div class="stat"><b data-count="libres">0</b><span>de acceso libre</span></div>
       </div>
     </div>
@@ -291,31 +293,18 @@
   <section class="panel ciclo" aria-label="Ciclo presupuestal">
     <div class="ciclo-head">
       <h3>Ciclo presupuestal</h3>
-      <small>Selecciona una etapa para ver sus herramientas</small>
+      <small>Selecciona una fase para ver en qué consiste y sus herramientas</small>
     </div>
     <ol class="steps" id="steps"></ol>
+    <div class="fase" id="fase"><div></div></div>
   </section>
-
-  <div class="panel toolbar">
-    <div class="search-box">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-      <input class="search" id="q" type="search" placeholder="Buscar proyecto…" aria-label="Buscar proyecto" autocomplete="off">
-      <span class="kbd" title="Presiona / para buscar">/</span>
-    </div>
-    <div class="filters">
-      <div class="fgroup" id="f-cat"><span>Tema</span></div>
-      <div class="fgroup" id="f-acc"><span>Acceso</span></div>
-      <button class="clear" id="clear" type="button">Limpiar filtros</button>
-    </div>
-  </div>
 
   <div class="error" id="error"></div>
   <div class="section-head" id="proyectos">
-    <h3 id="titulo">Proyectos disponibles</h3>
+    <h3>Proyectos disponibles</h3>
     <span id="count"></span>
   </div>
   <div class="grid" id="grid"></div>
-  <p class="empty" id="empty">No hay proyectos que coincidan. <button type="button" data-clear>Limpiar filtros</button></p>
 
   <div class="panel note">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
@@ -361,7 +350,7 @@ const leer=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 let DATA={proyectos:[],categorias:[],accesos:[],ciclo:[]};
-const estado={q:"",cat:"",acc:"",etapa:-1};
+const estado={etapa:-1};
 
 /* ---------- Tema claro/oscuro ---------- */
 $("#theme").addEventListener("click",()=>{
@@ -397,29 +386,22 @@ function iniciar(){
   const P=DATA.proyectos||[];
   if(DATA.actualizado) $("#actualizado").textContent="Actualizado: "+DATA.actualizado;
 
-  // etapas del ciclo
+  // fases del ciclo presupuestal
   const steps=$("#steps");
   steps.style.setProperty("--n",(DATA.ciclo||[]).length||1);
-  steps.innerHTML=(DATA.ciclo||[]).map((s,i)=>`<li><button class="step" type="button" data-etapa="${i}" aria-pressed="false">
-      <span class="dot">${i+1}</span><b>${esc(s.nombre)}</b><span>${esc(s.texto)}</span></button></li>`).join("");
+  steps.innerHTML=(DATA.ciclo||[]).map((s,i)=>{
+    const c=enCurso(s);
+    return `<li><button class="step" type="button" data-etapa="${i}" aria-pressed="false" aria-controls="fase">
+      <span class="dot">${i+1}</span><b>${esc(s.nombre)}</b><span>${esc(s.periodo_corto)}</span>
+      ${c?`<span><em class="curso">En curso · ${c}</em></span>`:""}</button></li>`;
+  }).join("");
   steps.addEventListener("click",e=>{
     const b=e.target.closest(".step"); if(!b) return;
     const i=+b.dataset.etapa;
     estado.etapa=estado.etapa===i?-1:i;
-    render(true);
-    if(estado.etapa>=0) $("#proyectos").scrollIntoView({block:"start"});
+    mostrarFase();
   });
-
-  // chips de filtro (solo se muestran los temas/accesos usados)
-  const chips=(lista,clave,campo)=>`<button class="chip on" type="button" data-${clave}="">Todos</button>`+
-    lista.filter(x=>P.some(p=>p[campo]===x.id)).map(x=>`<button class="chip" type="button" data-${clave}="${esc(x.id)}">${esc(x.nombre)}</button>`).join("");
-  $("#f-cat").insertAdjacentHTML("beforeend",chips(DATA.categorias||[],"cat","categoria"));
-  $("#f-acc").insertAdjacentHTML("beforeend",chips(DATA.accesos||[],"acc","acceso"));
-  $(".filters").addEventListener("click",e=>{
-    const c=e.target.closest(".chip"); if(!c) return;
-    if("cat" in c.dataset) estado.cat=c.dataset.cat; else estado.acc=c.dataset.acc;
-    render(true);
-  });
+  $("#fase").addEventListener("click",e=>{if(e.target.closest("[data-cerrar-fase]")){estado.etapa=-1;mostrarFase()}});
 
   // contadores del encabezado
   contar("herramientas",P.length);
@@ -441,16 +423,60 @@ function contar(clave,fin){
   })(t0);
 }
 
-/* ---------- Filtrado y tarjetas ---------- */
-const normal=s=>String(s??"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
-function resaltar(texto,q){
-  const t=esc(texto); if(!q) return t;
-  // busca sin tildes pero marca sobre el texto original (misma longitud tras normalizar por carácter)
-  const base=[...String(texto)].map(c=>normal(c)).join("");
-  const i=base.indexOf(q); if(i<0) return t;
-  const orig=[...String(texto)];
-  return esc(orig.slice(0,i).join(""))+"<mark>"+esc(orig.slice(i,i+q.length).join(""))+"</mark>"+esc(orig.slice(i+q.length).join(""));
+/* ---------- Fases del ciclo ---------- */
+// devuelve el año fiscal si la fase está en curso según el mes actual
+function enCurso(s){
+  if(!Array.isArray(s.meses)) return "";
+  const hoy=new Date(),m=hoy.getMonth()+1;
+  if(m<s.meses[0]||m>s.meses[1]) return "";
+  return hoy.getFullYear()+(s.anio==="siguiente"?1:0);
 }
+
+const ICO_FASE={
+  consiste:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>',
+  define:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h9"/></svg>',
+  periodo:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>'
+};
+
+function mostrarFase(){
+  const s=(DATA.ciclo||[])[estado.etapa];
+  document.querySelectorAll(".step").forEach(b=>{const on=+b.dataset.etapa===estado.etapa;b.classList.toggle("on",on);b.setAttribute("aria-pressed",on)});
+  const box=$("#fase");
+  if(s){
+    const P=DATA.proyectos||[];
+    const tools=(s.proyectos||[]).map(id=>P.find(p=>p.id===id)).filter(Boolean);
+    const c=enCurso(s);
+    box.firstElementChild.innerHTML=`<div class="fase-in">
+      <div class="fase-top">
+        <div><h4>${estado.etapa+1}. ${esc(s.nombre)}</h4><small>${esc(s.periodo_corto)}${c?` · <em class="curso">En curso · ${c}</em>`:""}</small></div>
+        <button class="fase-x" type="button" data-cerrar-fase aria-label="Cerrar fase"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <div class="fase-cols">
+        <div><b>${ICO_FASE.consiste}¿En qué consiste?</b><p>${esc(s.consiste)}</p></div>
+        <div><b>${ICO_FASE.define}¿Qué se define?</b><p>${esc(s.define)}</p></div>
+        <div><b>${ICO_FASE.periodo}Periodo</b><p>${esc(s.periodo)}</p></div>
+      </div>
+      <div class="fase-tools">${tools.length
+        ?"Herramientas de esta fase: "+tools.map(p=>`<a href="${esc(p.url)}" target="_blank" rel="noopener" data-ir="${esc(p.id)}">${esc(p.nombre)} ${FLECHA}</a>`).join("")
+        :"Aún no hay herramientas del portal asociadas a esta fase."}</div>
+    </div>`;
+  }
+  box.classList.toggle("open",!!s);
+  marcar();
+}
+
+// resalta en la grilla las herramientas de la fase seleccionada
+function marcar(){
+  const s=(DATA.ciclo||[])[estado.etapa];
+  const ids=s?(s.proyectos||[]):null;
+  document.querySelectorAll("#grid .card").forEach(c=>{
+    const dentro=ids&&ids.includes(c.dataset.id);
+    c.classList.toggle("hl",!!dentro);
+    c.classList.toggle("dim",!!ids&&!dentro);
+  });
+}
+
+/* ---------- Tarjetas ---------- */
 const nombreAcceso=id=>((DATA.accesos||[]).find(a=>a.id===id)||{}).nombre||id||"Ingreso con tu usuario";
 const nombreCat=id=>((DATA.categorias||[]).find(c=>c.id===id)||{}).nombre||"";
 
@@ -463,22 +489,7 @@ function hace(ms){
 }
 
 function render(animar){
-  const P=DATA.proyectos||[];
-  const q=normal(estado.q.trim());
-  const etapa=(DATA.ciclo||[])[estado.etapa];
-  const lista=P.filter(p=>
-    (!q || normal(p.nombre+" "+p.descripcion+" "+(p.detalle||[]).join(" ")+" "+p.etiqueta).includes(q)) &&
-    (!estado.cat || p.categoria===estado.cat) &&
-    (!estado.acc || p.acceso===estado.acc) &&
-    (!etapa || (etapa.proyectos||[]).includes(p.id)));
-  const filtrando=!!(q||estado.cat||estado.acc||etapa);
-
-  document.querySelectorAll(".step").forEach(b=>{const on=+b.dataset.etapa===estado.etapa;b.classList.toggle("on",on);b.setAttribute("aria-pressed",on)});
-  document.querySelectorAll("[data-cat]").forEach(c=>c.classList.toggle("on",c.dataset.cat===estado.cat));
-  document.querySelectorAll("[data-acc]").forEach(c=>c.classList.toggle("on",c.dataset.acc===estado.acc));
-  $("#clear").classList.toggle("show",filtrando);
-  $("#titulo").textContent=etapa?"Etapa: "+etapa.nombre:"Proyectos disponibles";
-
+  const lista=DATA.proyectos||[];
   const usos=JSON.parse(leer("ultimo-uso")||"{}");
   $("#grid").innerHTML=lista.map((p,i)=>{
     const ok=p.url && p.url.trim()!=="";
@@ -490,21 +501,21 @@ function render(animar){
           ${usos[p.id]?`<span class="recent"><i></i>Usado ${hace(usos[p.id])}</span>`:""}
         </div>
       </div>
-      <h2>${resaltar(p.nombre,q)}</h2>
-      <p>${resaltar(p.descripcion,q)}</p>
+      <h2>${esc(p.nombre)}</h2>
+      <p>${esc(p.descripcion)}</p>
       <div class="actions">
         <a class="btn ${ok?"":"disabled"}" href="${ok?esc(p.url):"#"}" target="_blank" rel="noopener" data-ir="${esc(p.id)}">Ingresar ${FLECHA}</a>
         <button class="more" type="button" data-ver="${esc(p.id)}" aria-label="Ver detalle de ${esc(p.nombre)}" title="Ver detalle">${INFO}</button>
       </div>
       ${ok?`<span class="tag ${esc(p.acceso)}"><i></i>${esc(nombreAcceso(p.acceso))}</span>`:'<span class="tag pend">Enlace pendiente</span>'}
     </article>`;
-  }).join("") + (filtrando?"":`<article class="card soon${animar?"":" reveal"}" style="transition-delay:${lista.length*.08}s">
+  }).join("") + (`<article class="card soon${animar?"":" reveal"}" style="transition-delay:${lista.length*.08}s">
       <div class="plus"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>
       <h2>Próximamente</h2>
       <p>Nuevos proyectos se irán incorporando a este portal.</p>
     </article>`);
-  $("#empty").style.display=lista.length||!P.length?"none":"block";
   $("#count").textContent=lista.length+(lista.length===1?" proyecto":" proyectos");
+  marcar();
   if(!animar) revelar();
 }
 
@@ -554,7 +565,7 @@ function abrir(id){
       ${(p.detalle||[]).length?`<ul>${p.detalle.map(d=>`<li>${CHECK}<span>${esc(d)}</span></li>`).join("")}</ul>`:""}
       <div class="dlg-meta">
         ${nombreCat(p.categoria)?`<span>Tema: ${esc(nombreCat(p.categoria))}</span>`:""}
-        ${etapas.length?`<span>Etapa: ${esc(etapas.join(", "))}</span>`:""}
+        ${etapas.length?`<span>Fase: ${esc(etapas.join(", "))}</span>`:""}
         <span>${esc(nombreAcceso(p.acceso))}</span>
       </div>
       <div class="dlg-actions">
@@ -572,16 +583,10 @@ dlg.addEventListener("click",e=>{
   if(ir){const u=JSON.parse(leer("ultimo-uso")||"{}");u[ir.dataset.ir]=Date.now();guardar("ultimo-uso",JSON.stringify(u));dlg.close();setTimeout(()=>render(true),300)}
 });
 
-/* ---------- Búsqueda y limpiar ---------- */
-const q=$("#q");
-q.addEventListener("input",()=>{estado.q=q.value;render(true)});
-document.addEventListener("keydown",e=>{
-  if(e.key==="/"&&document.activeElement!==q&&!dlg.open){e.preventDefault();q.focus()}
-  if(e.key==="Escape"&&document.activeElement===q&&q.value){q.value="";estado.q="";render(true)}
+$("#fase").addEventListener("click",e=>{
+  const ir=e.target.closest("[data-ir]");
+  if(ir){const u=JSON.parse(leer("ultimo-uso")||"{}");u[ir.dataset.ir]=Date.now();guardar("ultimo-uso",JSON.stringify(u));setTimeout(()=>render(true),300)}
 });
-function limpiar(){estado.q="";estado.cat="";estado.acc="";estado.etapa=-1;q.value="";render(true)}
-$("#clear").addEventListener("click",limpiar);
-document.addEventListener("click",e=>{if(e.target.closest("[data-clear]")) limpiar()});
 
 cargar();
 </script>
