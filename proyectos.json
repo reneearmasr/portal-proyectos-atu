@@ -50,7 +50,7 @@
       "periodo": "Va desde el 1 de enero hasta el 31 de diciembre del año fiscal correspondiente.",
       "meses": [1, 12],
       "anio": "actual",
-      "proyectos": ["tablero-2026", "programacion", "seace"]
+      "proyectos": ["tablero-2026", "programacion", "seace", "normas"]
     },
     {
       "nombre": "Evaluación",
@@ -159,6 +159,23 @@
       "etiqueta": "SEACE",
       "icono": "gavel",
       "estilo": "v6"
+    },
+    {
+      "id": "normas",
+      "nombre": "Monitor de normas legales",
+      "descripcion": "Normas publicadas en El Peruano que involucran a la ATU, la normatividad presupuestal y las inversiones, revisadas cada mañana.",
+      "detalle": [
+        "Revisión diaria de todas las normas de El Peruano",
+        "Alertas de normas que mencionan a la ATU",
+        "Buscador, indicadores y resumen en Word",
+        "Aviso diario por Telegram"
+      ],
+      "url": "https://reneearmasr.github.io/monitor-normas-elperuano/",
+      "acceso": "libre",
+      "categoria": "gestion",
+      "etiqueta": "Normas",
+      "icono": "doc",
+      "estilo": "v7"
     }
   ]
 }
