@@ -50,7 +50,7 @@
       "periodo": "Va desde el 1 de enero hasta el 31 de diciembre del año fiscal correspondiente.",
       "meses": [1, 12],
       "anio": "actual",
-      "proyectos": ["tablero-2026", "programacion", "seace", "normas"]
+      "proyectos": ["tablero-2026", "programacion", "normas"]
     },
     {
       "nombre": "Evaluación",
@@ -141,24 +141,6 @@
       "etiqueta": "Multianual",
       "icono": "target",
       "estilo": "v5"
-    },
-    {
-      "id": "seace",
-      "nombre": "Procesos de selección SEACE",
-      "descripcion": "Estado de los procesos de selección vigentes de la ATU en el SEACE, con resumen por proceso y descarga en Excel.",
-      "detalle": [
-        "Procesos vigentes convocados por la ATU (RUC 20604932964)",
-        "Cronograma, postores, buena pro y próxima acción",
-        "Alertas: apelaciones y contratos pendientes",
-        "Descarga del resumen en Excel"
-      ],
-      "url": "https://reneearmasr.github.io/portal-proyectos-atu/seace/",
-      "indicador": "seace",
-      "acceso": "libre",
-      "categoria": "ejecucion",
-      "etiqueta": "SEACE",
-      "icono": "gavel",
-      "estilo": "v6"
     },
     {
       "id": "normas",
