@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-05T08:46",
+ "generado": "2026-11-06T08:30",
  "entidad": "AUTORIDAD DE TRANSPORTE URBANO PARA LIMA Y CALLAO",
  "ruc": "20604932964",
  "desde_anio": 2025,
@@ -7,6 +7,27 @@
  "fuente": "OECE – Portal de Contrataciones Abiertas (datos del SEACE)",
  "excel": "Procesos_SEACE_ATU.xlsx",
  "procesos": [
+  {
+   "nomenclatura": "CP-ABR-8-2026-ATU-1",
+   "convocatoria": "1262716",
+   "tipo": "Concurso Público Abreviado",
+   "objeto": "Servicios",
+   "descripcion": "SERVICIO DE SUPERVISIÓN PARA LA EJECUCIÓN DE LA OBRA ¿RENOVACION DE PARADERO; EN EL(LA) SERVICIO DE TRANSPORTE DEL CORREDOR COMPLEMENTARIO N° 2 ¿ CORREDOR ROJO, CON RECORRIDO EN LOS PRINCIPALES EJES VIALES DE LOS DISTRITOS; LA PERLA, SAN MIGUEL, PUEBLO LIBRE, MAGDALENA DEL MAR, JESUS MARIA, SAN ISID",
+   "fecha_convocatoria": "2026-10-30T21:24",
+   "estado": "CONVOCADO",
+   "grupo": "curso",
+   "items": 1,
+   "valor": 388626.77,
+   "consultas_fin": "2026-11-04T23:59",
+   "postores": 0,
+   "buena_pro": "",
+   "monto_adjudicado": null,
+   "ultimo_documento": "Bases Administrativas",
+   "fecha_ultimo_documento": "2026-10-30T21:24",
+   "situacion": "Convocado: etapa de consultas cerrada; en curso hacia presentación de ofertas/evaluación.",
+   "resumen": "Concurso Público Abreviado de servicios convocado el 30/10/2026 (hace 7 días). Valor estimado/referencial: S/ 388,626.77. Estado: CONVOCADO. Último documento: Bases Administrativas (30/10/2026).",
+   "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-1262716"
+  },
   {
    "nomenclatura": "LP-ABR-3-2026-ATU-1",
    "convocatoria": "1262702",
@@ -24,8 +45,8 @@
    "monto_adjudicado": null,
    "ultimo_documento": "Bases Administrativas",
    "fecha_ultimo_documento": "2026-10-30T20:57",
-   "situacion": "Consultas y observaciones hasta el 05/11/2026 (vence hoy).",
-   "resumen": "Licitación Pública Abreviada de bienes convocado el 30/10/2026 (hace 6 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Bases Administrativas (30/10/2026).",
+   "situacion": "Convocado: etapa de consultas cerrada; en curso hacia presentación de ofertas/evaluación.",
+   "resumen": "Licitación Pública Abreviada de bienes convocado el 30/10/2026 (hace 7 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Bases Administrativas (30/10/2026).",
    "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-1262702"
   },
   {
@@ -45,30 +66,9 @@
    "monto_adjudicado": null,
    "ultimo_documento": "Bases Administrativas",
    "fecha_ultimo_documento": "2026-10-30T18:03",
-   "situacion": "Consultas y observaciones hasta el 10/11/2026 (5 días).",
-   "resumen": "Concurso Público de Servicios convocado el 30/10/2026 (hace 6 días). Valor estimado/referencial: no publicado. 4 ítems: 4 CONVOCADO. Último documento: Bases Administrativas (30/10/2026).",
+   "situacion": "Consultas y observaciones hasta el 10/11/2026 (4 días).",
+   "resumen": "Concurso Público de Servicios convocado el 30/10/2026 (hace 7 días). Valor estimado/referencial: no publicado. 4 ítems: 4 CONVOCADO. Último documento: Bases Administrativas (30/10/2026).",
    "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-1262519"
-  },
-  {
-   "nomenclatura": "CP-ABR-8-2026-ATU-1",
-   "convocatoria": "1262716",
-   "tipo": "Concurso Público Abreviado",
-   "objeto": "Servicios",
-   "descripcion": "SERVICIO DE SUPERVISIÓN PARA LA EJECUCIÓN DE LA OBRA ¿RENOVACION DE PARADERO; EN EL(LA) SERVICIO DE TRANSPORTE DEL CORREDOR COMPLEMENTARIO N° 2 ¿ CORREDOR ROJO, CON RECORRIDO EN LOS PRINCIPALES EJES VIALES DE LOS DISTRITOS; LA PERLA, SAN MIGUEL, PUEBLO LIBRE, MAGDALENA DEL MAR, JESUS MARIA, SAN ISID",
-   "fecha_convocatoria": "2026-10-30T21:24",
-   "estado": "CONVOCADO",
-   "grupo": "curso",
-   "items": 1,
-   "valor": 388626.77,
-   "consultas_fin": "2026-11-04T23:59",
-   "postores": 0,
-   "buena_pro": "",
-   "monto_adjudicado": null,
-   "ultimo_documento": "Bases Administrativas",
-   "fecha_ultimo_documento": "2026-10-30T21:24",
-   "situacion": "Convocado: etapa de consultas cerrada; en curso hacia presentación de ofertas/evaluación.",
-   "resumen": "Concurso Público Abreviado de servicios convocado el 30/10/2026 (hace 6 días). Valor estimado/referencial: S/ 388,626.77. Estado: CONVOCADO. Último documento: Bases Administrativas (30/10/2026).",
-   "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-1262716"
   },
   {
    "nomenclatura": "CP-ABR-7-2026-ATU.-1",
@@ -88,7 +88,7 @@
    "ultimo_documento": "Bases Administrativas",
    "fecha_ultimo_documento": "2026-10-26T21:16",
    "situacion": "Convocado: etapa de consultas cerrada; en curso hacia presentación de ofertas/evaluación.",
-   "resumen": "Concurso Público Abreviado de servicios convocado el 26/10/2026 (hace 10 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Bases Administrativas (26/10/2026).",
+   "resumen": "Concurso Público Abreviado de servicios convocado el 26/10/2026 (hace 11 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Bases Administrativas (26/10/2026).",
    "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-1261084"
   },
   {
@@ -109,7 +109,7 @@
    "ultimo_documento": "Bases Administrativas",
    "fecha_ultimo_documento": "2026-10-22T18:52",
    "situacion": "Convocado: etapa de consultas cerrada; en curso hacia presentación de ofertas/evaluación.",
-   "resumen": "Concurso Público Abreviado de servicios convocado el 22/10/2026 (hace 14 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Bases Administrativas (22/10/2026).",
+   "resumen": "Concurso Público Abreviado de servicios convocado el 22/10/2026 (hace 15 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Bases Administrativas (22/10/2026).",
    "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-1260294"
   },
   {
@@ -130,7 +130,7 @@
    "ultimo_documento": "Bases Administrativas",
    "fecha_ultimo_documento": "2026-10-01T21:04",
    "situacion": "Convocado: etapa de consultas cerrada; en curso hacia presentación de ofertas/evaluación.",
-   "resumen": "Concurso Público de Servicios convocado el 01/10/2026 (hace 35 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Bases Administrativas (01/10/2026).",
+   "resumen": "Concurso Público de Servicios convocado el 01/10/2026 (hace 36 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Bases Administrativas (01/10/2026).",
    "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-1254828"
   },
   {
@@ -151,7 +151,7 @@
    "ultimo_documento": "Bases Administrativas",
    "fecha_ultimo_documento": "2026-09-11T20:30",
    "situacion": "Convocado: etapa de consultas cerrada; en curso hacia presentación de ofertas/evaluación.",
-   "resumen": "Concurso Público de Servicios convocado el 11/09/2026 (hace 55 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Bases Administrativas (11/09/2026).",
+   "resumen": "Concurso Público de Servicios convocado el 11/09/2026 (hace 56 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Bases Administrativas (11/09/2026).",
    "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-1249681"
   },
   {
@@ -172,7 +172,7 @@
    "ultimo_documento": "Bases Integradas",
    "fecha_ultimo_documento": "2026-10-23T18:03",
    "situacion": "Convocado: etapa de consultas cerrada; en curso hacia presentación de ofertas/evaluación.",
-   "resumen": "Concurso Público de Servicios convocado el 21/07/2026 (hace 107 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Bases Integradas (23/10/2026).",
+   "resumen": "Concurso Público de Servicios convocado el 21/07/2026 (hace 108 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Bases Integradas (23/10/2026).",
    "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-1235886"
   },
   {
@@ -193,7 +193,7 @@
    "ultimo_documento": "Documentos de Otorgamiento de Buena Pro",
    "fecha_ultimo_documento": "2026-08-13T17:30",
    "situacion": "En trámite: pendiente de registro de efecto.",
-   "resumen": "Concurso Público Abreviado de servicios convocado el 14/07/2026 (hace 114 días). Valor estimado/referencial: S/ 481,750.00. Estado: PENDIENTE_DE_REGISTRO_DE_EFECTO. Postores: 10. Buena pro a LOGISTAS SERVICIOS S.A.C. por S/ 315,952.00. Último documento: Documentos de Otorgamiento de Buena Pro (13/08/2026).",
+   "resumen": "Concurso Público Abreviado de servicios convocado el 14/07/2026 (hace 115 días). Valor estimado/referencial: S/ 481,750.00. Estado: PENDIENTE_DE_REGISTRO_DE_EFECTO. Postores: 10. Buena pro a LOGISTAS SERVICIOS S.A.C. por S/ 315,952.00. Último documento: Documentos de Otorgamiento de Buena Pro (13/08/2026).",
    "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-1233921"
   },
   {
@@ -214,7 +214,7 @@
    "ultimo_documento": "Documentos de Otorgamiento de Buena Pro",
    "fecha_ultimo_documento": "2026-09-30T17:24",
    "situacion": "Retrotraído/reiniciado: revisar nueva etapa del cronograma.",
-   "resumen": "Concurso Público de Servicios convocado el 26/06/2026 (hace 132 días). Valor estimado/referencial: S/ 3,565,508.55. Estado: RETROTRAIDO_POR_RESOLUCION. Postores: 15. Último documento: Documentos de Otorgamiento de Buena Pro (30/09/2026).",
+   "resumen": "Concurso Público de Servicios convocado el 26/06/2026 (hace 133 días). Valor estimado/referencial: S/ 3,565,508.55. Estado: RETROTRAIDO_POR_RESOLUCION. Postores: 15. Último documento: Documentos de Otorgamiento de Buena Pro (30/09/2026).",
    "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-1229354"
   },
   {
@@ -235,7 +235,7 @@
    "ultimo_documento": "Documentos de Presentación de Propuestas",
    "fecha_ultimo_documento": "2026-09-30T17:24",
    "situacion": "Convocado: etapa de consultas cerrada; en curso hacia presentación de ofertas/evaluación.",
-   "resumen": "Concurso Público de Servicios convocado el 26/06/2026 (hace 132 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Documentos de Presentación de Propuestas (30/09/2026).",
+   "resumen": "Concurso Público de Servicios convocado el 26/06/2026 (hace 133 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Documentos de Presentación de Propuestas (30/09/2026).",
    "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-1263015"
   },
   {
@@ -256,7 +256,7 @@
    "ultimo_documento": "Documentos de Otorgamiento de Buena Pro",
    "fecha_ultimo_documento": "2026-07-23T00:12",
    "situacion": "Retrotraído/reiniciado: revisar nueva etapa del cronograma.",
-   "resumen": "Licitación Pública Abreviada de obras convocado el 08/06/2026 (hace 150 días). Valor estimado/referencial: S/ 4,933,726.01. Estado: RETROTRAIDO_POR_RESOLUCION. Postores: 64. Buena pro a CONSORCIO PROGRESO por S/ 4,687,039.71. Último documento: Documentos de Otorgamiento de Buena Pro (23/07/2026).",
+   "resumen": "Licitación Pública Abreviada de obras convocado el 08/06/2026 (hace 151 días). Valor estimado/referencial: S/ 4,933,726.01. Estado: RETROTRAIDO_POR_RESOLUCION. Postores: 64. Buena pro a CONSORCIO PROGRESO por S/ 4,687,039.71. Último documento: Documentos de Otorgamiento de Buena Pro (23/07/2026).",
    "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-1223446"
   },
   {
@@ -277,7 +277,7 @@
    "ultimo_documento": "Documentos de Otorgamiento de Buena Pro",
    "fecha_ultimo_documento": "2026-02-24T18:00",
    "situacion": "Retrotraído/reiniciado: revisar nueva etapa del cronograma.",
-   "resumen": "Licitación Pública Abreviada de bienes convocado el 22/12/2025 (hace 318 días). Valor estimado/referencial: no publicado. 2 ítems: 2 CONVOCADO_POR_REINICIO. Postores: 17. Buena pro a SOLUCIONES ESPECIALES S.A.C. por S/ 468,000.00. Último documento: Documentos de Otorgamiento de Buena Pro (24/02/2026).",
+   "resumen": "Licitación Pública Abreviada de bienes convocado el 22/12/2025 (hace 319 días). Valor estimado/referencial: no publicado. 2 ítems: 2 CONVOCADO_POR_REINICIO. Postores: 17. Buena pro a SOLUCIONES ESPECIALES S.A.C. por S/ 468,000.00. Último documento: Documentos de Otorgamiento de Buena Pro (24/02/2026).",
    "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-1180205"
   },
   {
@@ -297,8 +297,8 @@
    "monto_adjudicado": null,
    "ultimo_documento": "Bases Administrativas",
    "fecha_ultimo_documento": "2025-10-28T20:23",
-   "situacion": "Convocado sin documentos nuevos hace 373 días: verificar en SEACE si sigue en curso o no fue actualizado.",
-   "resumen": "Concurso Público de Servicios convocado el 28/10/2025 (hace 373 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Bases Administrativas (28/10/2025).",
+   "situacion": "Convocado sin documentos nuevos hace 374 días: verificar en SEACE si sigue en curso o no fue actualizado.",
+   "resumen": "Concurso Público de Servicios convocado el 28/10/2025 (hace 374 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Bases Administrativas (28/10/2025).",
    "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-1164719"
   },
   {
@@ -318,8 +318,8 @@
    "monto_adjudicado": null,
    "ultimo_documento": "Bases Administrativas",
    "fecha_ultimo_documento": "2025-10-06T14:47",
-   "situacion": "Convocado sin documentos nuevos hace 395 días: verificar en SEACE si sigue en curso o no fue actualizado.",
-   "resumen": "Concurso Público Abreviado de servicios convocado el 06/10/2025 (hace 395 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Bases Administrativas (06/10/2025).",
+   "situacion": "Convocado sin documentos nuevos hace 396 días: verificar en SEACE si sigue en curso o no fue actualizado.",
+   "resumen": "Concurso Público Abreviado de servicios convocado el 06/10/2025 (hace 396 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Bases Administrativas (06/10/2025).",
    "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-1157662"
   },
   {
@@ -339,8 +339,8 @@
    "monto_adjudicado": null,
    "ultimo_documento": "Bases Administrativas",
    "fecha_ultimo_documento": "2025-10-06T20:57",
-   "situacion": "Convocado sin documentos nuevos hace 395 días: verificar en SEACE si sigue en curso o no fue actualizado.",
-   "resumen": "Licitación Pública Abreviada de obras convocado el 06/10/2025 (hace 395 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Bases Administrativas (06/10/2025).",
+   "situacion": "Convocado sin documentos nuevos hace 396 días: verificar en SEACE si sigue en curso o no fue actualizado.",
+   "resumen": "Licitación Pública Abreviada de obras convocado el 06/10/2025 (hace 396 días). Valor estimado/referencial: no publicado. Estado: CONVOCADO. Último documento: Bases Administrativas (06/10/2025).",
    "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-1157850"
   },
   {
@@ -361,7 +361,7 @@
    "ultimo_documento": "Documentos de Otorgamiento de Buena Pro",
    "fecha_ultimo_documento": "2025-10-23T10:14",
    "situacion": "Buena pro consentida: pendiente suscripción de contrato.",
-   "resumen": "Adjudicación Simplificada de bienes convocado el 01/10/2025 (hace 400 días). Valor estimado/referencial: S/ 395,000.00. Estado: CONSENTIDO. Postores: 7. Buena pro a SERVFAC PERU E.I.R.L. por S/ 378,900.00. Último documento: Documentos de Otorgamiento de Buena Pro (23/10/2025).",
+   "resumen": "Adjudicación Simplificada de bienes convocado el 01/10/2025 (hace 401 días). Valor estimado/referencial: S/ 395,000.00. Estado: CONSENTIDO. Postores: 7. Buena pro a SERVFAC PERU E.I.R.L. por S/ 378,900.00. Último documento: Documentos de Otorgamiento de Buena Pro (23/10/2025).",
    "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-2025-206330-22"
   },
   {
@@ -382,7 +382,7 @@
    "ultimo_documento": "Documentos de Otorgamiento de Buena Pro",
    "fecha_ultimo_documento": "2025-11-05T18:09",
    "situacion": "Retrotraído/reiniciado: revisar nueva etapa del cronograma.",
-   "resumen": "Concurso Público Abreviado de servicios convocado el 08/07/2025 (hace 485 días). Valor estimado/referencial: S/ 278,000.00. Estado: RETROTRAIDO_POR_RESOLUCION. Postores: 23. Buena pro a GATT PERU S.R.L. por S/ 248,990.00. Buena pro a HERMES GROUP SAC por S/ 240,000.00. Último documento: Documentos de Otorgamiento de Buena Pro (05/11/2025).",
+   "resumen": "Concurso Público Abreviado de servicios convocado el 08/07/2025 (hace 486 días). Valor estimado/referencial: S/ 278,000.00. Estado: RETROTRAIDO_POR_RESOLUCION. Postores: 23. Buena pro a GATT PERU S.R.L. por S/ 248,990.00. Buena pro a HERMES GROUP SAC por S/ 240,000.00. Último documento: Documentos de Otorgamiento de Buena Pro (05/11/2025).",
    "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-1157235"
   },
   {
@@ -403,7 +403,7 @@
    "ultimo_documento": "Documentos de Otorgamiento de Buena Pro",
    "fecha_ultimo_documento": "2025-09-10T19:07",
    "situacion": "Retrotraído/reiniciado: revisar nueva etapa del cronograma.",
-   "resumen": "Concurso Público Abreviado de servicios convocado el 08/07/2025 (hace 485 días). Valor estimado/referencial: S/ 278,000.00. Estado: RETROTRAIDO_POR_RESOLUCION. Postores: 22. Buena pro a GATT PERU S.R.L. por S/ 248,990.00. Último documento: Documentos de Otorgamiento de Buena Pro (10/09/2025).",
+   "resumen": "Concurso Público Abreviado de servicios convocado el 08/07/2025 (hace 486 días). Valor estimado/referencial: S/ 278,000.00. Estado: RETROTRAIDO_POR_RESOLUCION. Postores: 22. Buena pro a GATT PERU S.R.L. por S/ 248,990.00. Último documento: Documentos de Otorgamiento de Buena Pro (10/09/2025).",
    "url": "https://contratacionesabiertas.oece.gob.pe/proceso/ocds-dgv273-seacev3-2025-206330-15"
   }
  ]
