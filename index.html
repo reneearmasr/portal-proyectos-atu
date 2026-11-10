@@ -164,8 +164,13 @@
   .head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:18px;position:relative;z-index:1}
   .icon{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;color:#fff;flex:none;
         background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 10px 20px -6px var(--c1);
-        transition:transform .4s cubic-bezier(.2,.8,.2,1)}
-  .card:hover .icon{transform:rotate(-8deg) scale(1.08)}
+        position:relative;overflow:hidden}
+  .icon svg{position:relative}
+  /* Efecto de desvanecimiento en cuadritos al pasar el mouse */
+  .pix{position:absolute;inset:0;display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(7,1fr);pointer-events:none}
+  .pix i{opacity:0;background:linear-gradient(135deg,var(--c1),var(--c2));background-size:56px 56px}
+  .card:hover .pix i{animation:pix 1.8s ease-in-out infinite}
+  @keyframes pix{0%,12%{opacity:0}42%,62%{opacity:1}92%,100%{opacity:0}}
   .badges{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
   .year{font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;color:var(--c1);
         background:color-mix(in srgb,var(--c2) 16%, transparent);border:1px solid color-mix(in srgb,var(--c2) 35%, transparent)}
@@ -587,6 +592,12 @@ function hace(ms){
   const d=Math.round(h/24); return d===1?"ayer":`hace ${d} días`;
 }
 
+// Cuadrícula de 7x7 cuadritos con retrasos al azar para el efecto del ícono
+const PIX='<span class="pix" aria-hidden="true">'+Array.from({length:49},(_,k)=>{
+  const x=k%7,y=Math.floor(k/7);
+  return `<i style="background-position:${-x*8}px ${-y*8}px;animation-delay:${(Math.random()*.7).toFixed(2)}s"></i>`;
+}).join("")+'</span>';
+
 function render(animar){
   const lista=DATA.proyectos||[];
   const usos=JSON.parse(leer("ultimo-uso")||"{}");
@@ -594,7 +605,7 @@ function render(animar){
     const ok=p.url && p.url.trim()!=="";
     return `<article class="card ${esc(p.estilo||"v1")}${ok?" link":""}${animar?"":" reveal"}" data-id="${esc(p.id)}" style="transition-delay:${animar?0:i*.08}s">
       <div class="head">
-        <div class="icon">${ICONOS[p.icono]||ICONOS.chart}</div>
+        <div class="icon">${ICONOS[p.icono]||ICONOS.chart}${PIX}</div>
         <div class="badges">
           ${p.etiqueta?`<span class="year">${esc(p.etiqueta)}</span>`:""}
           ${usos[p.id]?`<span class="recent"><i></i>Usado ${hace(usos[p.id])}</span>`:""}
