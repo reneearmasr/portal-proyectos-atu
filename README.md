@@ -1,7 +1,7 @@
 # Portal de Proyectos ATU
 
 Página única que reúne los accesos a los proyectos de gestión presupuestal de la ATU:
-Tablero de ejecución 2026, Programación y Modificación Presupuestal, Previsiones 2027–2034,
+Tablero de ejecución 2026, Programación y Modificación de Inversiones, Previsiones 2027–2034,
 Base de datos de locadores y POI Multianual.
 
 Es un acceso **adicional**: cada herramienta conserva su enlace e ingreso individual.
