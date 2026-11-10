@@ -82,10 +82,10 @@
     {
       "id": "programacion",
       "nombre": "Programación y Modificación de Inversiones",
-      "descripcion": "Programación y reprogramación financiera del POI por unidad orgánica y clasificador de gasto, con aprobación de OPP.",
+      "descripcion": "Programación y modificación presupuestal de las inversiones de la ATU, por inversión (CUI) y clasificador de gasto, con aprobación de OPP.",
       "detalle": [
-        "Programación financiera del POI",
-        "Reprogramación por unidad orgánica y clasificador de gasto",
+        "Programación de inversiones por CUI",
+        "Modificaciones presupuestales de las inversiones",
         "Aprobación de la OPP"
       ],
       "url": "https://reneearmasr.github.io/programacion_ATU/",
