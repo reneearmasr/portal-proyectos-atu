@@ -166,11 +166,25 @@
         background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 10px 20px -6px var(--c1);
         position:relative;overflow:hidden}
   .icon svg{position:relative}
-  /* Efecto de desvanecimiento en cuadritos al pasar el mouse */
-  .pix{position:absolute;inset:0;display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(7,1fr);pointer-events:none}
-  .pix i{opacity:0;background:linear-gradient(135deg,var(--c1),var(--c2));background-size:56px 56px}
-  .card:hover .pix i{animation:pix 1.8s ease-in-out infinite}
-  @keyframes pix{0%,12%{opacity:0}42%,62%{opacity:1}92%,100%{opacity:0}}
+  /* Efecto de destellos al pasar el mouse */
+  .icon::after{content:"";position:absolute;top:-20%;left:-90%;width:55%;height:140%;pointer-events:none;
+        background:linear-gradient(105deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-18deg);opacity:0}
+  .card:hover .icon::after{animation:barrido 1.6s ease-in-out infinite}
+  .spk{position:absolute;inset:0;pointer-events:none}
+  .spk i{position:absolute;width:12px;height:12px;opacity:0;transform:scale(0);
+        background:#fff;clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);
+        filter:drop-shadow(0 0 3px rgba(255,255,255,.9))}
+  .spk i:nth-child(1){top:5px;right:6px;animation-delay:0s}
+  .spk i:nth-child(2){bottom:7px;left:6px;width:9px;height:9px;animation-delay:.45s}
+  .spk i:nth-child(3){top:9px;left:10px;width:7px;height:7px;animation-delay:.9s}
+  .spk i:nth-child(4){bottom:6px;right:11px;width:8px;height:8px;animation-delay:1.25s}
+  .card:hover .spk i{animation:destello 1.6s ease-in-out infinite}
+  .card:hover .spk i:nth-child(1){animation-delay:0s}
+  .card:hover .spk i:nth-child(2){animation-delay:.45s}
+  .card:hover .spk i:nth-child(3){animation-delay:.9s}
+  .card:hover .spk i:nth-child(4){animation-delay:1.25s}
+  @keyframes destello{0%,100%{opacity:0;transform:scale(0) rotate(0)}30%{opacity:1;transform:scale(1.15) rotate(90deg)}55%{opacity:0;transform:scale(.3) rotate(180deg)}}
+  @keyframes barrido{0%{left:-90%;opacity:0}15%{opacity:1}60%,100%{left:140%;opacity:0}}
   .badges{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
   .year{font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;color:var(--c1);
         background:color-mix(in srgb,var(--c2) 16%, transparent);border:1px solid color-mix(in srgb,var(--c2) 35%, transparent)}
@@ -592,11 +606,8 @@ function hace(ms){
   const d=Math.round(h/24); return d===1?"ayer":`hace ${d} días`;
 }
 
-// Cuadrícula de 7x7 cuadritos con retrasos al azar para el efecto del ícono
-const PIX='<span class="pix" aria-hidden="true">'+Array.from({length:49},(_,k)=>{
-  const x=k%7,y=Math.floor(k/7);
-  return `<i style="background-position:${-x*8}px ${-y*8}px;animation-delay:${(Math.random()*.7).toFixed(2)}s"></i>`;
-}).join("")+'</span>';
+// Destellos (estrellitas) del ícono al pasar el mouse
+const SPK='<span class="spk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
 
 function render(animar){
   const lista=DATA.proyectos||[];
@@ -605,7 +616,7 @@ function render(animar){
     const ok=p.url && p.url.trim()!=="";
     return `<article class="card ${esc(p.estilo||"v1")}${ok?" link":""}${animar?"":" reveal"}" data-id="${esc(p.id)}" style="transition-delay:${animar?0:i*.08}s">
       <div class="head">
-        <div class="icon">${ICONOS[p.icono]||ICONOS.chart}${PIX}</div>
+        <div class="icon">${ICONOS[p.icono]||ICONOS.chart}${SPK}</div>
         <div class="badges">
           ${p.etiqueta?`<span class="year">${esc(p.etiqueta)}</span>`:""}
           ${usos[p.id]?`<span class="recent"><i></i>Usado ${hace(usos[p.id])}</span>`:""}
